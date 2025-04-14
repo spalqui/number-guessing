@@ -6,3 +6,4 @@ A simple number guessing game implemented in Go. The player has to guess a rando
 - User input handling
 - Feedback on guesses (too high, too low, correct)
 - Limited number of attempts
+- Replay option

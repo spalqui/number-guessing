@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"strings"
 )
 
 const (
@@ -16,13 +17,19 @@ const (
 func main() {
 	printIntroAndRules()
 
-	maxAttempts := getDifficultyLevel()
+	for {
+		maxAttempts := getDifficultyLevel()
 
-	fmt.Println("Let's start the game!")
+		fmt.Println("Let's start the game!")
 
-	correctNumber := generateRandomNumber()
+		correctNumber := generateRandomNumber()
 
-	playGame(maxAttempts, correctNumber)
+		playGame(maxAttempts, correctNumber)
+
+		if userWantsToQuit() {
+			break
+		}
+	}
 
 	fmt.Println("The end of the game!")
 }
@@ -30,8 +37,6 @@ func main() {
 func printIntroAndRules() {
 	fmt.Println("Welcome to the Number Guessing Game!")
 	fmt.Println("I'm thinking of a number between 1 and 100.")
-	fmt.Println("You have 5 chances to guess the correct number.")
-	fmt.Println("")
 }
 
 func getDifficultyLevel() int {
@@ -70,6 +75,8 @@ func generateRandomNumber() int {
 }
 
 func playGame(maxAttempts, correctNumber int) {
+	fmt.Printf("You have %d chances to guess the correct number.\n", maxAttempts)
+
 	for i := 0; i < maxAttempts; i++ {
 		guess := getUserGuess()
 
@@ -81,6 +88,7 @@ func playGame(maxAttempts, correctNumber int) {
 }
 
 func getUserGuess() int {
+	fmt.Println("")
 	fmt.Print("Enter your guess: ")
 
 	var guess int
@@ -100,5 +108,19 @@ func isGuessCorrect(guess, correctNumber, attempt int) bool {
 	}
 
 	fmt.Printf("Congratulations! You've guessed the correct number in %d attempts.\n", attempt)
+	return true
+}
+
+func userWantsToQuit() bool {
+	fmt.Print("Do you want to play again? (y/n): ")
+	var playAgain string
+	fmt.Scan(&playAgain)
+
+	if strings.ToLower(playAgain) == "y" {
+		fmt.Println("Great! Let's play again!")
+		return false
+	}
+
+	fmt.Println("Thank you for playing! Goodbye!")
 	return true
 }
