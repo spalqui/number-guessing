@@ -7,6 +7,7 @@
 *.dll
 *.so
 *.dylib
+number-guessing
 
 # Test binary, built with `go test -c`
 *.test

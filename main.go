@@ -77,7 +77,7 @@ func playGame(maxAttempts, correctNumber int) {
 			return
 		}
 	}
-	fmt.Printf("Sorry! You've used all your chances. The correct number was %d\n.", correctNumber)
+	fmt.Printf("Sorry! You've used all your chances. The correct number was %d.\n", correctNumber)
 }
 
 func getUserGuess() int {
@@ -90,12 +90,12 @@ func getUserGuess() int {
 
 func isGuessCorrect(guess, correctNumber, attempt int) bool {
 	if guess < correctNumber {
-		fmt.Printf("Incorrect! The number is greater than %d\n", guess)
+		fmt.Printf("Incorrect! The number is greater than %d.\n", guess)
 		return false
 	}
 
 	if guess > correctNumber {
-		fmt.Printf("Incorrect! The number is less than %d\n", guess)
+		fmt.Printf("Incorrect! The number is less than %d.\n", guess)
 		return false
 	}
 
